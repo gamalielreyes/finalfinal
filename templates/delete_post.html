@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block title%}Eliminar post{%endblock%}
+{%block sub%}<strong><center>Eliminar post</center></strong>{%endblock%}
+{%block content%}
+{%ifequal user.usuario.pk post.iduser.id%}
+<form action="" method="post">{% csrf_token %}
+    <p>¿Seguro que quieres eliminar esta petición?"{{ object }}"?</p>
+    <input type="submit" value="Confirmar" />
+    <button href="/" class="btn btn-danger">Cancelar</button>
+</form>
+{%endifequal%}
+{%endblock%}
+

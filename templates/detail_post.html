@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+
+{%load staticfiles%}
+
+{%block title%}
+{{postobject.Nombre_post}}
+{%endblock%}
+
+{% block buscador%}
+{% endblock %}
+
+{%block content%}
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p>
+				 <img class="img-circle" src="{{postobject.iduser.Foto_de_perfil.url}}" width="50" height="50" align="left" >
+				<p><a href="/detail-perfil/{{postobject.iduser.id}}">{{postobject.iduser}}</a></p>
+			</p>
+				<h2><b>{{postobject.Nombre_post}}</b></h2>
+
+				{%if postobject.Foto_post%}
+				<img class="img-fluid" src="{{postobject.Foto_post.url}}" width="250" height="250" >
+				{%endif%}
+				
+				<br>
+
+				<p>{{postobject.Informacion}}</p>
+				<p>{{postobject.Fecha_post}}</p>
+				{%ifequal user.usuario.pk postobject.iduser.id%}
+					<p><b><a href="/update-post/{{postobject.idpost}}">Editar Post</a></b></p>
+					<p><b><a href="/delete-post/{{postobject.idpost}}">Eliminar Post</a></b></p>
+{%endifequal%}
+
+<br>
+			<div class="list-group">
+					{%for i in Comment%}
+						{%ifequal postobject i.idpost%}
+							<div class="list-group-item">
+								<p>
+								<img class="img-circle" src="{{i.iduser.Foto_de_perfil.url}}" width="30" height="30" align="left">---
+								  <a href="/detail-perfil/{{i.iduser.id}}">{{i.iduser}}</a> 
+								</p>
+								<p class="list-group-item-text">{{i.texto}}</p>
+								<p></p>
+								  <p class="list-group-item-text">{{i.fechacomment}}</p>
+								<p><a href="detail-comment/{{i.idcomentario}}">Responder</a></p>
+							</div>
+						{%endifequal%}	
+					{%endfor%}
+				</div>
+
+			</div>
+			<div class="col-md-6">
+				{%if user.is_authenticated%}
+				<h3>Comentar:</h3>
+	    		<form method="POST" class="form-inline" enctype="multipart/form-data" id="form">{% csrf_token %}
+	        		{{form.as_p}}
+	        	
+	        		<input type="hidden" name="Post" value="{{postobject.idpost}}">
+	        		<input type="submit" value="Ok" class="btn btn-primary"></input>
+	    		</form>
+	    		{%else%}
+	    			<div class="jumbotron">
+						<p><b>No has iniciado sesion</b></p>
+						<p>Inicia sesion para poder comentar</p>
+						<a href="{%url 'login'%}" class="btn btn-success"><b>Login -->>> </b></a>
+					</div>
+	    		{%endif%}
+			</div>
+		</div>
+	</div>
+{%endblock%}

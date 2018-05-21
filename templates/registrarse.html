@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block title%} Registrarse {%endblock%}
+{%block sub%}<strong><center>Registrarse</center></strong>{%endblock%}
+{%block content%}
+  <div class="container m-y-3">
+    <div class="row">
+      <div class="col-xs-6">
+        <form action= "" method="POST" enctype="multipart/form-data" >
+          {% csrf_token %}
+
+          {{form.as_p}}
+          <button type="submit" value = "Register" class="btn btn-primary" style="background-color:#af8552 ; border-color: white">Registrarse</button>
+          <button type="reset" value = "Cancel" class="btn btn-primary" style="background-color:#af8552 ; border-color: white">Cancelar Registro</button>
+        </form>
+      </div>
+
+
+{%endblock%}
+
+{% block footer %}
+
+{% endblock %}

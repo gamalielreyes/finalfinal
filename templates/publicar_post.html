@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block title%}Nuevo{%endblock%}
+{%block sub%}<strong><center>Publicación nueva</center></strong>{%endblock%}
+{%block content%}
+<div class="container m-y-3">
+  <div class="row">
+    <div class="col-xs-6">
+      <form action= "" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <button type="submit" class="btn btn-primary" style="background-color:#2b6831 ; border-color: black">Publicar</button>
+        <!--
+        <button type="reset" class="btn btn-danger">Cancel</button>
+      -->
+
+      </form>
+    </div>
+  </div>
+</div>
+{%endblock%}

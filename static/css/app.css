@@ -1,0 +1,33 @@
+html {
+  font-size: 16px;
+}
+body {
+  font-family: 'Lato';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+thead {
+  background-color:#C84C6E !important;
+  color:white !important;
+}
+
+.navbar {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #12B1BF;
+  border-radius: 0;
+}
+
+.sub {
+  padding-top: 40px;
+  padding-bottom:60px;
+  background-color: #12B1BF;
+  color: white;
+}
+
+.sub h1 {
+  font-size: 80px;
+}

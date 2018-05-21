@@ -1,0 +1,108 @@
+{%extends 'base.html'%}
+{%block title%}Iniciar sesión{%endblock%}
+{%block sub%}
+{% if user.is_authenticated %}
+  <h1><strong><center>Bienvenido {{user.username}}</center></strong></h1>
+{% else %}
+  <h1><strong><center>Iniciar sesión</center></strong></h1>
+{%endif%}
+{%endblock%}
+{%block content%}
+<style>
+.button {
+  border-radius: 10px;
+  background-color: #2b6831;
+  border-color: black;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 8px;
+  width: 230px;
+  transition: all 0.9s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 50px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : 'karidad',
+      cookie     : true,
+      xfbml      : true,
+      version    : '2.9'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+<div class="container m-y-3">
+  <div class="row">
+    <div class="col-xs-6">
+      {% if user.is_authenticated %}
+      
+
+
+      
+      {% else %}
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="UserName"><strong>Usuario</strong></label>
+          <input type="text" name="username">
+        </div>
+        <div class="form-group">
+          <label for="Password"><strong>Contraseña</strong></label>
+          <input type="password" name="password">
+        </div>
+        <button type="submit" class="button" style="background-color:#2b6831 ; border-color: black"><span> Iniciar sesión </span></button>
+<!--
+        <button type="reset" class="btn btn-danger">Cancel</button>
+-->
+      </form>
+
+<a href="{% url 'social:begin' 'facebook' %}"> Inicia sesión con Facebook (Experimental)</a>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{%endblock%}

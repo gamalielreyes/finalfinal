@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block title%}Editar post{%endblock%}
+{%block sub%}<strong><center>Editar post</center></strong>{%endblock%}
+{%block content%}
+{%ifequal user.usuario.pk post.iduser.id%}
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+{%endifequal%}
+{%endblock%}
+

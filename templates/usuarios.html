@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block titulo %}Perfil/Muro{% endblock %}
+{% block buscador%}
+<li class="nav-item active"> 
+<form method='GET' action=''>
+<input type= 'text' name="q" placeholder='Buscar usuarios en Karidad' value="{{ request.GET.q }}"/>
+ </li>
+<li class="nav-item active"> 
+<input type= 'submit' value='Buscar'/>
+ </li>
+{% endblock %}
+
+
+{% block content %}
+
+<center><h1><strong>Usuarios</strong></h1></center>
+
+					{%for i in list%}
+			
+						<div class="col-sm-6">
+							<div class="card" style="height: 14em;">
+								<div class="card-block">
+
+									
+									<h1><p><a href="/detail-perfil/{{i.pk}}">{{i.iduser}}</a></p></h1>
+									<p><img class="img-circle" src="{{i.Foto_de_perfil.url}}" width="100" height="100" align="left">
+									
+									<p>
+				                  <h4 class="card-subtitle text-muted"><strong> Nombre:</strong> {{ i.Nombre}} {{ i.Apellido_paterno}} {{ i.Apellido_materno}}</h4></p>
+				                  <h4 class="card-subtitle text-muted"> <strong>Genero: </strong>{{ i.Genero}}</h4>
+				                  </p>
+				                  <p>
+				                  <h4 class="card-subtitle text-muted"><strong> Es: </strong>{{ i.Tipo_usuario}}</h4></p>
+				              </p>
+                				</div>
+
+							</div>
+						</div>
+
+					{%endfor%}
+
+
+
+{% endblock %}
+

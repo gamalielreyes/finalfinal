@@ -1,0 +1,449 @@
+{% load static %}
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+</style>
+
+<style>
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1f4d2e;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #e3e3e3;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/detail-perfil/{{user.usuario.pk}}">{{user.username}}</a>
+
+
+
+  <img class="img-circle" src="{{user.usuario.Foto_de_perfil.url}}" width="220" height="220" align="middle" alt="">
+  
+
+
+  <a href="/public">Publicar Solicitud</a>
+  <a href="/update-perfil/{{user.usuario.pk}}">Editar Mis Datos</a>
+  <a href="/logout">Salir</a>
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{%block title%}{%endblock%}</title>
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" rel="stylesheet">
+    <link href="{% static 'css/app.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav class="navbar-dark bg-faded" style="background-color:#2b6831 ; border-color: white" >
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+                
+
+                <img class="img-circle" src="{% static 'img/logo.png' %}" width="40" height="40"  alt="">
+
+
+      <a class="navbar-brand" href="/" >Karidad</a>
+      <ul class="nav navbar-nav pull-xs-right">
+
+        {% block buscador%}{% endblock %}
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Inicio</a>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/#funciona">¿Cómo funciona?</a>
+        </li>
+
+{% if user.is_authenticated %}
+
+
+
+          <li class="nav-item">
+            <div class="dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+            Donaciones
+          </a>
+          <div class="dropdown-content">
+            <a class="dropdown-item" href="/usuarios">Usuarios</a>
+            <a class="dropdown-item" href="/todas">Publicaciones</a>
+          </div>
+          </div>
+        </li>
+
+
+
+{% endif %}
+
+
+
+        <li class="nav-item">
+          <div class="dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+            Categorias
+          </a>
+          <div class="dropdown-content">
+            <a class="dropdown-item" href="/sa">Salud</a>
+            <a class="dropdown-item" href="/ed">Educación</a>
+            <a class="dropdown-item" href="/se">Servicio comunitario</a>
+
+          </div>
+          </div>
+        </li>
+
+<li class="nav-item ">
+            .
+        
+        </li>
+
+        {% if user.is_authenticated %}
+<span style="cursor:pointer" onclick="openNav()">
+         <img class="img-circle" src="{{user.usuario.Foto_de_perfil.url}}" width="40" height="40" alt="">
+
+</span>
+
+        <li class="nav-item">
+
+
+<!--
+            <a class="dropdown-item" href="/detail-perfil/{{user.usuario.pk}}">Mi Perfil</a>
+
+            <a class="dropdown-item" href="/update-perfil/{{user.usuario.pk}}">Editar</a>
+
+
+            <a class="dropdown-item" href="/logout">Salir</a>
+-->
+
+        </li>
+
+        
+
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login" >Iniciar sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/registrarse" >Registrarse</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+</nav>
+
+
+
+<!--CODIGO NUEVO -->
+    <!-- Header - set the background image for the header in the line below -->
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+}
+</script>
+     
+
+
+<style>
+
+#ttest{
+
+  background-size: 1300px 555px;
+  padding-top: 95px;
+
+}
+
+#gg{
+
+  color: #FFFFFF;
+}
+
+#lol
+{
+
+  color: #FFFFFF;
+}
+
+
+
+
+</style>
+
+
+<div id="main"> 
+
+      {%block banner%}{%endblock%}
+
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>{% block sub %}{% endblock %}</h1>
+      </div>
+
+    </div>
+  </div>
+
+
+      <div id="main"> {% block content %}{% endblock %} </div>
+    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript">
+      $('input,select,textarea').addClass('form-control');
+    </script>
+
+
+
+
+</body>
+
+</html>

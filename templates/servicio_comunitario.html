@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%block title%}Servicio comunitario{%endblock%}
+{%block sub%}<strong><center>Servicio comunitario<center></center></strong>{%endblock%}
+{% block buscador%}
+<li class="nav-item active"> 
+<form method='GET' action=''>
+<input type= 'text' name="q" placeholder='Buscar casos de serv. com.' value="{{ request.GET.q }}"/>
+ </li>
+<li class="nav-item active"> 
+<input type= 'submit' value='Buscar'/>
+ </li>
+{% endblock %}
+{%block content%}
+<div class="container m-y-3">
+  <div class="row ">
+    {% for item in l2 %}
+    <div class="col-sm-4">
+        <div class="card" style="height: 40em;">
+            <div class="card-block">
+              <h3 class="card-title"><b>Petición:</b>            <a href="/detail-post/{{item.idpost}}">{{ item.Nombre_post}}</a>                 </h2>
+            <h5 class="card-subtitle text-muted"><b>De:</b>            <a href="/detail-perfil/{{item.iduser.id}}">{{item.iduser}}</a>           </h4>
+            </div>
+            {%if item.Foto_post%}
+
+                <img class="img-fluid" src="{{item.Foto_post.url}}" alt="Card image" >
+              {%endif%}
+
+            <div class="card-block">
+              <h6 class="card-text"> <b>Información:</b> {{ item.Informacion}}</h6>
+              <h6 class="card-text"><b>Fecha:</b>{{ item.Fecha_post }}</h6>
+              <h6 class="card-text"><b>Categoria:</b> {{ item.Categoria}}</h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{%endblock%}

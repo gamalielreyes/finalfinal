@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+
+{%load staticfiles%}
+
+{%block title%}
+{{object.text}}
+{%endblock%}
+
+{% block buscador%}
+{% endblock %}
+
+{%block content%}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p>{{object.texto}}</p>
+				<p>-<a href="/detail-perfil/{{object.pk}}">{{object.iduser}}</a></p>
+				<p>{{object.fecharespuesta}}</p>
+
+<br>
+				<div class="list-group">
+					{%for i in Resp%}
+						{%ifequal object i.idcomentario%}
+							<div class="list-group-item">
+								<p>
+								 <img class="img-circle" src="{{i.iduser.Foto_de_perfil.url}}" width="30" height="30" align="left">---								<a class="list-group-item-text"><a href="/detail-perfil/{{i.iduser.id}}">{{i.iduser}}</a> 
+								</p>
+								
+								<p class="list-group-item-text">{{i.text}}</p>
+								<p><a>{{i.fecharespuesta}}</a></p>
+								 </div>
+						{%endifequal%}	
+					{%endfor%}
+				</div>
+			</div>
+			<div class="col-md-6">
+				{%if user.is_authenticated%}
+				<h3>Responder:</h3>
+	    		<form method="POST" class="form-inline" enctype="multipart/form-data" id="form">{% csrf_token %}
+	        		{{form.as_p}}
+	        	
+	        		<input type="hidden" name="Comentario" value="{{object.idcomentario}}">
+	        		<input type="submit" value="Responder comentario" class="btn btn-primary"></input>
+	    		</form>
+	    		{%else%}
+	    			<div class="jumbotron">
+						<p><b>No has iniciado sesion</b></p>
+						<p>Inicia sesion para continuar</p>
+						<a href="{%url 'login'%}" class="btn btn-success"><b>Login</b></a>
+					</div>
+	    		{%endif%}
+			</div>
+		</div>
+	</div>
+{%endblock%}

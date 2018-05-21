@@ -1,0 +1,530 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block title%}Karidad{%endblock%}
+{%block sub%}{%endblock%}
+{% block buscador%}
+<li class="nav-item active"> 
+<form method='GET' action=''>
+<input type= 'text' name="q" placeholder='Buscar en esta página' value="{{ request.GET.q }}"/>
+ </li>
+<li class="nav-item active"> 
+<input type= 'submit' value='Buscar'/>
+ </li>
+{% endblock %}
+
+{%block banner%} 
+
+
+<header id="ttest" class="py-5 bg-image-full" style="background-image: url('{% static 'img/ayuda3.png' %}');">
+<center>
+          <h1 id="gg" class="display-1"><strong>"Casi todas las cosas buenas nacen de una actitud de aprecio por los demás."</h1></strong>
+          <h3 id="lol" class="display-6 text-white"> -Dalai Lama</h3></center>
+    
+      <img class="img-fluid" width="150" height="130" mx-auto" src="{% static 'img/fondoh.png' %}"  alt="">
+
+      <div style="height: 0px;"></div>
+
+</header>
+
+
+
+
+      {%endblock%}
+
+{%block content%}
+
+<style>
+.button {
+  border-radius: 10px;
+  background-color: #2b6831;
+  border-color: white;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 22px;
+  padding: 7px;
+  width: 230px;
+  transition: all 0.9s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 50px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+  <div class="container m-y-6">
+    <div class="row">
+    
+      <div class="col-xs-12"> <!--contenido completo-->
+      
+        <div class="header-content" >
+            <div class="header-content-inner ">
+                {% if user.is_authenticated %}
+                <!--
+                  <h1><strong><center>Bienvenido {{user.username}}</center></strong></h1>
+                -->
+              </div>
+            </div>
+
+
+    <br>
+              <div  class="col-sm-12">
+
+                  <h1 class="m-t-3"><center>¡Conoce a las personas explorando las publicaciones por usuarios registrados!</center></h1>
+
+                  <br>
+
+                  <center>
+
+                    <a class="btn btn-primary btn-md" href="/todas" style="background-color:#2b6831 ; border-color: black">Explorar publicaciones <br></a>
+
+                  </center>
+
+                  </div>
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+
+                  
+   <style>
+
+  #cont{
+  background-color: #7c7136;
+  color: #ffffff;
+
+
+
+  }
+
+  #cob{
+
+    color: #FFFFFF;
+  }
+
+
+</style>
+ 
+
+
+
+<section>
+  <div id="cont" class="container-fluid bg-grey">
+ <div id ="funciona" class="row">
+
+<div  class="col-sm-12">
+</br>
+</br>
+
+  <center><h1><strong>SERVICIOS</strong></h1></center>
+</br>
+  <center><h2>Puede crear una petición para que le donen algo que necesita, o puede explorar las peticiones de otras personas, si desea ayudar, se cuenta con tres categorias.</h2></center>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+
+    <div class="col-sm-4">
+          <center> 
+          <h4><strong>SALUD</strong></h4>        
+          </center>
+
+         <center><img class="img-circle" src="{% static 'img/salud.png' %}" alt="" width="140" height="140"></center>
+         <br>
+         </center>
+         <center>
+     <p><a id="cob" class="button" href="/sa" role="button" style="background-color:#2b6831 ; border-color: white"><span>Explorar</span></a></p></center>
+   
+   </div>
+ 
+
+   <div class="col-sm-4">
+          <center> 
+          <h4><strong>EDUCACIÓN</strong></h4>        
+          </center>
+
+      <center><img class="img-circle" src="{% static 'img/edu2.jpg' %}" alt="" width="140" height="140"></center>
+         <br>
+      <center>
+     <p><a id="cob" class="button" href="/ed" role="button" style="background-color:#2b6831 ; border-color: white"><span>Explorar</span></a></p></center>
+
+    </div>
+
+    
+<div class="col-sm-4">
+
+          <center> 
+          <h4><strong>SERVICIO COMUNITARIO</strong></h4>        
+          </center>
+
+     <center><img class="img-circle" src="{% static 'img/comunitario.jpg' %}" alt="" width="140" height="140"></center>
+         <br>
+         <center>
+     <p><a id="cob" class="button" href="/se" role="button" style="background-color:#2b6831 ; border-color: white"><span>Explorar</span></a></p></center>
+
+            <br>
+            <br>
+            <br>
+            <br>
+  </div>
+
+  <br><br>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+                 
+
+            
+                  
+                {% else %}
+                
+
+
+
+
+                <!--datos sin logearse-->
+                <div  class="col-sm-6">
+
+                  <h1 class="m-t-3"><center>¿Quieres que te apoyen en Karidad? Simplemente registrate. </center></h1>
+
+                  <br>
+                  
+                  <center>
+                   <a class="btn btn-primary btn-md" href="/registrarse" style="background-color:#2b6831 ; border-color: black">Registrarse <br></a>
+                   </center>
+                 </div>
+
+
+                  <div  class="col-sm-6">
+
+                  <h1 class="m-t-3"><center>¡Conoce a las personas explorando las publicaciones por usuarios registrados!</center></h1>
+
+                  <br>
+
+                  <center>
+
+                    <a class="btn btn-primary btn-md" href="/todas" style="background-color:#2b6831 ; border-color: black">Explorar publicaciones <br></a>
+
+                  </center>
+
+                  </div>
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                  
+   <style>
+
+  #cont{
+  background-color: #7c7136;
+  color: #ffffff;
+
+
+
+  }
+
+  #cob{
+
+    color: #FFFFFF;
+  }
+
+
+</style>
+ 
+
+
+
+<section>
+  <div id="cont" class="container-fluid bg-grey">
+ <div id ="funciona" class="row">
+
+<div  class="col-sm-12">
+</br>
+</br>
+
+  <center><h1><strong>SERVICIOS</strong></h1></center>
+</br>
+  <center><h2>Puede crear una petición para que le donen algo que necesita, o puede explorar las peticiones de otras personas, si desea ayudar, se cuenta con tres categorias.</h2></center>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+
+    <div class="col-sm-4">
+          <center> 
+          <h4><strong>SALUD</strong></h4>        
+          </center>
+
+         <center><img class="img-circle" src="{% static 'img/salud.png' %}" alt="" width="140" height="140"></center>
+         <br>
+         </center>
+         <center>
+     <p><a id="cob" class="btn btn-secondary" href=/sa role="button" style="background-color:#2b6831 ; border-color: white">Explorar &raquo;</a></p></center>
+   
+   </div>
+ 
+
+   <div class="col-sm-4">
+          <center> 
+          <h4><strong>EDUCACIÓN</strong></h4>        
+          </center>
+
+      <center><img class="img-circle" src="{% static 'img/edu2.jpg' %}" alt="" width="140" height="140"></center>
+         <br>
+      <center>
+     <p><a id="cob" class="btn btn-secondary" href="/ed" role="button" style="background-color:#2b6831 ; border-color: white">Explorar &raquo;</a></p></center>
+
+    </div>
+
+    
+<div class="col-sm-4">
+
+          <center> 
+          <h4><strong>SERVICIO COMUNITARIO</strong></h4>        
+          </center>
+
+     <center><img class="img-circle" src="{% static 'img/comunitario.jpg' %}" alt="" width="140" height="140"></center>
+         <br>
+         <center>
+     <p><a id="cob" class="btn btn-secondary" href="/se" role="button" style="background-color:#2b6831 ; border-color: white">Explorar &raquo;</a></p></center>
+
+            <br>
+            <br>
+            <br>
+            <br>
+  </div>
+
+  <br><br>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+                {% endif %}
+            </div>
+          </div>
+          
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+<!--CODIGO NUEVO (AGREGAR CARPETA DE IMG AL NUEVO PROYECTO EN STATIC)-->
+
+
+
+
+
+
+
+</br>
+</br>
+</br>
+   <section class="bg-2" id="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h1 class="section-heading  t"><center><strong>FUNDADORES</strong></center></h1>
+          </br>
+          </br>
+          </br>
+          </div>
+
+          
+     
+
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="team-member">
+              <a><center>
+               <img class="img-circle" src="{% static 'img/cristobal.jpg' %}" width="150" height="150" alt="">
+               </br>
+               </br>
+              <h4> <center>Cristóbal Gastelum</center></h4></center></a>
+            </br>
+              <!--
+
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="team-member">
+              <a><center>
+              <img class="img-circle" src="{% static 'img/ernesto.jpg' %}" width="150" height="150" alt="">
+              </br>
+              </br>
+              <h4><center>Ernesto Vera</center></h4></center></a>
+              </br>
+            -->
+
+
+               </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="team-member">
+              <a><center>
+              <img class="img-circle" src="{% static 'img/esteban.jpg' %}" width="150" height="150" alt="">
+              </br>
+              </br>
+              <h4><center>Esteban Velazquez</center></h4></center></a>
+              </br>
+
+               </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="team-member">
+              <a><center>
+              <img class="img-circle" src="{% static 'img/adrian.jpg' %}" width="150" height="150" alt="">
+              </br>
+              </br>
+              <h4><center>Adrian Mendoza</center></h4></center></a>
+              </br>
+
+              
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="team-member">
+              <a><center>
+              <img class="img-circle" src="{% static 'img/gama.jpg' %}" width="150" height="150" alt="">
+              </br>
+              </br>
+              <h4><center>Gamaliel Reyes</center></h4></center></a>
+              </br>
+
+
+          </div>
+        </div>
+
+          <h3 class="section-subheading text-muted"><p>Somos un equipo de estudiantes de la carrera en ingenieria en sistemas computacionales en el Instituto Tecnologico de Tijuana, creamos esta aplicación web llamada "Karidad" para ayudar a personas que lo necesiten. </p>
+
+            </br>
+            </br>
+            </br>
+        </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+  <style>
+
+
+.bg-4 { 
+    background-color: #2f2f2f;
+    color: #ffffff;
+
+
+}
+
+</style>
+
+
+
+
+<footer  class="container-fluid bg-4 text-center" id="ffinal">
+  
+</br>
+  <h2 class="text-center">Desarrolladores</h2>
+</br>
+  <div class="row">
+    <div class="col-sm-5">
+
+
+        <div class="span4"><p>Gastelum Alemán Cristóbal - 13211408</p></div>
+        <div class="span4"><p>Mendoza Muñoz Adrian - 132151</p></div>
+        <div class="span4"><p>Reyes Gutierrez Gamaliel - 13211501</p></div>
+        <div class="span4"><p>Velazquez De León Esteban Josué - 13211405</p></div>
+
+      </br>
+
+<p><strong>&copy;Programación en la nube - Proyecto final - Karidad</strong></p>
+
+    </div>
+  </div>
+ </footer>
+
+
+{%endblock%}

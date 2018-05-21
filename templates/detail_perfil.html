@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block titulo %}Perfil/Muro{% endblock %}
+
+{% block buscador%}
+<li class="nav-item active"> 
+<form method='GET' action=''>
+<input type= 'text' name="q" placeholder='Búsqueda no aplica' value="{{ request.GET.q }}"/>
+ </li>
+<li class="nav-item active"> 
+<input type= 'submit' value='Buscar'/>
+ </li>
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<p>
+<img class="img-circle" src="{{usuario.Foto_de_perfil.url}}" width="80" height="80" align="left" >
+<h1><i><b>{{ usuario.iduser }}</b></i></h1>
+</p>
+<br>
+<p><b>Nombre real:</b> <i>{{ usuario.Nombre }} {{ usuario.Apellido_paterno }} {{ usuario.Apellido_materno }}</i></p>
+<p><b>Género: </b> <i>{{ usuario.Genero }}</i></p>
+<p><b>Email: </b> <i>{{ usuario.Email }}</i></p>
+<p><b>Número de teléfono:</b> <i>{{ usuario.No_telefono }}</i></p>
+<p><b>Dirección: </b> <i>{{ usuario.Direccion }}</i></p>
+<p><b>Biografía: </b> <i>{{ usuario.Biografia }}</i></p>
+
+{%ifequal user.usuario.pk usuario.pk%}
+					<p><b><a href="/update-perfil/{{user.usuario.pk}}">Editar Datos</a></b></p>
+					{%endifequal%}
+
+
+<h1><b>Publicaciones de {{usuario.Nombre}}</b></h1>
+
+					
+
+					{%for i in Post%}
+
+
+						{%ifequal usuario i.iduser%}
+							<p><b>________________________________________________________________________________________________________________________________________________________________________________________________________________________________</b> </p>
+							<div class="list-group-item">
+						    <h1><p><b><a href="/detail-post/{{i.idpost}}">{{ i.Nombre_post}}</a></b></p></h1>
+						    <p><b>Por: </b><a href="/detail-perfil/{{i.iduser.id}}">{{i.iduser}}</a></p>
+
+						<p>
+					    {%if i.Foto_post%}
+               			 	<img class="img-circle" src="{{i.Foto_post.url}}" width="120" height="120" align="left">
+              			{%endif%}
+
+		                <b>Dice: </b> {{ i.Informacion}}
+						</p>
+		                <p><b>En el: </b> {{ i.Fecha_post }}</p> 
+		                <p><b>Cat: </b> {{ i.Categoria }}</p> 
+
+
+
+					</div>
+
+						{%endifequal%}	
+					{%endfor%}
+
+
+
+
+
+
+
+
+
+
+
+
+<p><b>______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</b> </p>
+<p align="center"><b><h1>Comentarios realizados por {{usuario.Nombre}}</b></h1></p>
+
+
+
+
+
+
+
+<div class="list-group">
+					{%for i in Comment%}
+						{%ifequal usuario i.iduser%}
+					
+							<div class="list-group-item">
+								<p>
+								<img class="img-circle" src="{{i.iduser.Foto_de_perfil.url}}" width="30" height="30" align="left">---
+								  <a href="/detail-perfil/{{i.iduser.id}}">{{i.iduser}}</a> 
+								</p>
+								<p class="list-group-item-text">{{i.texto}}</p>
+								<p></p>
+								  <p class="list-group-item-text">{{i.fechacomment}}</p>
+								<p><a href="detail-comment/{{i.idcomentario}}">Ver Respuestas</a></p>
+							</div>
+
+						{%endifequal%}	
+					{%endfor%}
+				</div>
+
+
+
+
+
+
+
+
+{% endblock %}
